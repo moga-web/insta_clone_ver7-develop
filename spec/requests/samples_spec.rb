@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Samles", type: :request do
+RSpec.describe "Samples", type: :request do
   describe "GET /index" do
     it "returns http success" do
-      get "/samles/index"
+      get "/"
       expect(response).to have_http_status(:success)
     end
   end
