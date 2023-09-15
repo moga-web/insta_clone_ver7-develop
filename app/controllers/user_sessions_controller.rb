@@ -4,9 +4,9 @@ class UserSessionsController < ApplicationController
   def create
     user = login(params[:email], params[:password])
     if user
-      redirect_back_or_to '/', success: 'ログインしました'
+      redirect_back_or_to '/', success: t('.flash.login_success')
     else
-      flash.now[:danger] = 'ログインに失敗しました'
+      flash.now[:danger] = t('.flash.login_failure')
       render :new, status: :unprocessable_entity
     end
   end

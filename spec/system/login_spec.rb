@@ -14,6 +14,7 @@ RSpec.describe 'ログイン', type: :system do
         expect(page).to have_content 'ログインに失敗しました'
       end
     end
+  end
 
     context '入力情報が正しい場合' do
       it 'ログインができること' do
@@ -53,5 +54,6 @@ RSpec.describe 'ログイン', type: :system do
             end
           end
         end
+      end
     end
   end
