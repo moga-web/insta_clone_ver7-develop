@@ -22,7 +22,7 @@ RSpec.describe 'ユーザー登録', type: :system do
             end 
         end 
         def submit_and_count_errors 
-            click_button "新規登録" 
+            click_button "登録する" 
             within ".alert.alert-danger" do
                 expect(page.all('li').count).to_not eq 0
             end
