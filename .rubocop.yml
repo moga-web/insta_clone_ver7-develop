@@ -17,6 +17,8 @@ AllCops:
     - 'bin/**/*'
     - 'spec/**/*'
     - 'config/**/*'
+    - 'lib/tasks/auto_annotate_models.rake'
+    - 'app/controllers/user_sessions_controller.rb'
 Rails:
   Enabled: true
 
