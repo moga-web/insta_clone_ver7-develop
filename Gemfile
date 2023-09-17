@@ -49,9 +49,10 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 # 認証
 gem 'sorcery'
-
 # 国際化
 gem 'rails-i18n'
+# アクティブストレージのバリデーション
+gem 'activestorage-validator'
 
 group :development, :test do
   gem 'annotate'
