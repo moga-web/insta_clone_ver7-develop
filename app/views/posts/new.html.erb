@@ -1,0 +1,23 @@
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-xl-5 col-md-8">
+            <div class="card">
+                <div class="card-header">新規作成</div>
+                <div class="card-body">
+                <%= form_with model: @post do |f| %>
+                    <div class="mb-4">
+                        <%= f.label :body, class: 'form-label' %>
+                        <%= f.text_area :body, class: 'form-control' %>
+                    </div>
+                    <div class="mb-4">
+                        <%= f.label :images, class: 'form-label' %>
+                        <%= f.file_field :images, class: 'form-control',multiple: true, accept: 'image/*' %>
+                    </div>
+                <%= f.submit class: 'btn btn-primary' %>
+                <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
