@@ -1,5 +1,9 @@
 <div id="<%= dom_id(post) %>" class="card mb-5 post-item">
-    <%= render 'carousel_images', post: %>
+    <div class="d-flex justify-content-center"  >
+        <% post.images.each do |image| %>
+            <%= image_tag image,width: 300, height: 350 %>
+        <% end %>
+    </div>
     <div class="card-body">
         <p class="card-text"><%= post.body.truncate(50) %></p>
         <div class="d-flex justify-content-end mb-1">
