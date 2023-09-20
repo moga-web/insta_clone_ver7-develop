@@ -10,10 +10,15 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to root_path, success: '投稿しました'
+      #show.html.erbにリダイレクト
+      redirect_to post_path（@post）, success: '投稿しました'
     else
       render :new
     end
+  end
+
+  def show
+    @post = Post.find(params[:id])
   end
 
   def edit

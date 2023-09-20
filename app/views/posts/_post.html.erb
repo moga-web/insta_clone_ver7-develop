@@ -1,11 +1,13 @@
 <div id="<%= dom_id(post) %>" class="card mb-5 post-item">
     <div class="d-flex justify-content-center"  >
         <% post.images.each do |image| %>
-            <%= image_tag image,width: 300, height: 350 %>
+            <%= link_to post_path(post) do %>
+                <%= image_tag image,width: 300, height: 350 %>
+            <% end %>
         <% end %>
     </div>
     <div class="card-body">
-        <p class="card-text"><%= post.body.truncate(50) %></p>
+            <%= post.body.truncate(50) %>
         <div class="d-flex justify-content-end mb-1">
             <i class="far fa-heart"></i>
         </div>
