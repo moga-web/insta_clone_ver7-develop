@@ -18,8 +18,10 @@
 #
 FactoryBot.define do
   factory :post do
-    body { "MyText" }
-    post { "MyString" }
-    user { nil }
+    body { Faker::Lorem.sentence }
+    user
+    after(:build) do |post|
+      post.images.attach(io: File.open('spec/fixtures/dummy.jpeg'), filename: 'dummy.jpeg', content_type: 'image/jpeg')
+    end
   end
 end
