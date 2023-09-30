@@ -1,5 +1,5 @@
 <div id="<%= dom_id(post) %>" class="card mb-5 post-item ">
-    <%= render 'carousel_images', post: post %>
+    <%= render 'carousel_images', post: %>
     <div class="card-body">
             <%= post.body.truncate(50) %>
         <div class="d-flex justify-content-end mb-1">
@@ -11,10 +11,10 @@
     </div>
     <div class="card-footer">
         <div class="d-flex align-items-center gap-3">
-            <%= image_tag 'http://placehold.jp/40x40.png',
-                    class: 'rounded-circle',
-                    width: 40,
-                    height: 40 %>
+            <%= image_tag   'http://placehold.jp/40x40.png',
+                            class: 'rounded-circle',
+                            width: 40,
+                            height: 40 %>
         <span><%= post.user.username %></span>
         </div>
     </div>
