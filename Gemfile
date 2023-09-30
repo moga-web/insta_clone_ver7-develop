@@ -53,6 +53,8 @@ gem 'sorcery'
 gem 'rails-i18n'
 # アクティブストレージのバリデーション
 gem 'activestorage-validator'
+# ページネーション
+gem 'pagy'
 
 group :development, :test do
   gem 'annotate'
