@@ -46,12 +46,13 @@ gem 'bootsnap', require: false
 # gem "sassc-rails"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem 'image_processing', '~> 1.2'
 # 認証
 gem 'sorcery'
-
 # 国際化
 gem 'rails-i18n'
+# アクティブストレージのバリデーション
+gem 'activestorage-validator'
 
 group :development, :test do
   gem 'annotate'
@@ -59,11 +60,12 @@ group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'launchy'
   gem 'rspec-rails'
 end
 
 group :development do
-  gem 'erb_lint', require: false
+  gem 'erb_lint', '0.1.1', require: false
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'rubocop'
   gem 'rubocop-rails', require: false
