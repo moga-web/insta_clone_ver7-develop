@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class Posts::CommentsController < ApplicationController
   before_action :require_login
 
   def create

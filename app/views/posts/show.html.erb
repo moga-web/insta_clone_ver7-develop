@@ -56,20 +56,17 @@
                         <small class="text-muted"><%= l @post.created_at, format: :long %></small>
                     </p>
                 </div>
+
+                <div id= `comments`>
+                    <%= render partial: 'posts/comments/comment', collection: @comments %>
+                </div>
+            </div>
+
+            <div id= `comments`>
             </div>
 
             <div class="card-footer">
-                <form class="row gy-2 gx-3 align-items-center">
-                <div class="col-9">
-                    <div class="form-outline">
-                        <input type="text" id="form11Example1" class="form-control" autocomplete="off">
-                        <label class="form-label" for="form11Example1">Label</label>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-                </form>
+                <%= render 'posts/comments/form', post: @post, comment: @comment %>
             </div>
 
         </div>
