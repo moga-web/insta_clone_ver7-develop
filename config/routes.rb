@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'comments/show'
+  get 'comments/edit'
   root to: 'posts#index'
 
   get '/signup', to: 'users#new'
@@ -7,5 +10,7 @@ Rails.application.routes.draw do
   post '/login', to: 'user_sessions#create'
   delete '/logout', to: 'user_sessions#destroy'
 
-  resources :posts
+  resources :posts do
+    resources :comments, module: :posts
+  end
 end
