@@ -43,8 +43,8 @@
                 </div>
             </div>
 
-            <div class="card-body">
-                <div class="d-flex gap-3">
+            <div class="card-body" style="max-height: 400px; overflow-y: scroll">
+                <div class="gap-3">
                     <%= image_tag   'http://placehold.jp/40x40.png',
                                     class: 'rounded-circle',
                                     width: 40,
@@ -52,17 +52,15 @@
                     <div>
                     <span class="font-weight-bold"><%= @post.user.username %></span>
                     <%= simple_format(@post.body) %>
-                    <p class="card-text">
+                    <p class="card-text text-end">
                         <small class="text-muted"><%= l @post.created_at, format: :long %></small>
                     </p>
                 </div>
+                <hr>
 
-                <div id= `comments`>
+                <div id= 'comments'>
                     <%= render partial: 'posts/comments/comment', collection: @comments %>
                 </div>
-            </div>
-
-            <div id= `comments`>
             </div>
 
             <div class="card-footer">

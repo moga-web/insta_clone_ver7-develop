@@ -21,7 +21,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "mysql"
     ports:
-      - 3307:3306
+      - 3307:3308
     volumes:
       - mysql_data:/var/lib/mysql
   chrome:
