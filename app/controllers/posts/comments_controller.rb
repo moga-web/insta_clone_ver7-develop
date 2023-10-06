@@ -1,17 +1,17 @@
 class Posts::CommentsController < ApplicationController
   before_action :require_login
 
-  def create
-    @comment = current_user.comments.build(comment_params)
-    @comment.save
-  end
-
   def show
     @comment = current_user.comments.find(params[:id])
   end
 
   def edit
     @comment = current_user.comments.find(params[:id])
+  end
+
+  def create
+    @comment = current_user.comments.build(comment_params)
+    @comment.save
   end
 
   def update
