@@ -1,16 +1,17 @@
 require 'rails_helper'
 
-RSpec.describe 'コメント', type: :system do
-    let(:user) { create(:user) }
-    let(:post) { create(:post, user: user) }
-    before do
-        login_as(user)
-    end
-
+RSpec.describe 'Comments', type: :system do
+    let!(:user) { create(:user) }
+    let!(:user2) { create(:user) }
+    let!(:post) { create(:post, user: user) }
+    
     describe 'コメント投稿機能' do
+        before do
+            login_as(user)
+        end
         it 'コメントが投稿できること' do
             visit post_path(post)
-            within '#form-comment' do
+            within '#form_comment' do
                 fill_in 'コメント', with: 'テストコメント'
                 click_button '登録する'
             end
@@ -19,28 +20,60 @@ RSpec.describe 'コメント', type: :system do
     end
 
     describe 'コメント編集機能' do
-        let (:comment) { create(:comment, user: user, post: post) }
-        it 'コメントが編集できること' do
-            visit post_path(post)
-            within "#comment-#{comment.id}" do
-                find('.comment-edit').click
+        let! (:comment) { create(:comment, post: post, user: user2) }
+        context '自分のコメントの場合' do
+            before do
+                login_as(user2)
             end
-            within "#form-comment-#{comment.id}" do
-                fill_in 'コメント', with: '更新コメント'
-                click_on '更新する'
+            it 'コメントが編集できること' do
+                visit post_path(post)
+                within "#comment_#{comment.id}" do
+                    find('.btn-edit').click
+                end
+                within "#form_comment_#{comment.id}" do
+                    fill_in 'コメント', with: '更新コメントです'
+                    click_on '更新する'
+                end
+                expect(page).to have_content '更新コメント'
             end
-            expect(page).to have_content '更新コメント'
+        end
+        context '他人のコメントの場合' do
+            before do
+                login_as(user)
+            end
+            it '編集ボタンが表示されないこと' do
+                visit post_path(post)
+                within "#comment_#{comment.id}" do
+                    expect(page).not_to have_button '.btn-edit'
+                end
+            end
         end
     end
 
     describe 'コメント削除機能' do
-        let (:comment) { create(:comment, user: user, post: post) }
-        it 'コメントが削除できること' do
-            visit post_path(post)
-            within "#comment-#{comment.id}" do
-                accept_confirm{find('.comment-delete').click}
+        let! (:comment) { create(:comment, post: post, user: user2)  }
+        context '自分のコメントの場合' do
+            before do
+                login_as(user2)
             end
-            expect(page).not_to have_content comment.body
+            it 'コメントが削除できること' do
+                visit post_path(post)
+                within "#comment_#{comment.id}" do
+                    accept_confirm{find('.btn-delete').click}
+                end
+                expect(page).not_to have_content comment.body
+            end
+        end
+        context '他人のコメントの場合' do
+            before do
+                login_as(user)
+            end
+            it '削除ボタンが表示されないこと' do
+                visit post_path(post)
+                within "#comment_#{comment.id}" do
+                    expect(page).not_to have_button '.btn-delete'
+                end
+            end
         end
     end
 end
