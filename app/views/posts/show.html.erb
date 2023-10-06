@@ -14,7 +14,7 @@
                         <span class="font-weight-bold"><%= @post.user.username %></span>
                     </div>
                     <!-- Menu -->
-                    <% if current_user.id == @post.user.id %>
+                    <% if current_user && current_user.own?(@post) %>
                     <div class="dropdown text-center">
                         <a
                             class="text-reset me-3 dropdown-toggle hidden-arrow w-100 d-block"
@@ -43,8 +43,8 @@
                 </div>
             </div>
 
-            <div class="card-body">
-                <div class="d-flex gap-3">
+            <div class="card-body" style="max-height: 400px; overflow-y: scroll">
+                <div class="gap-3">
                     <%= image_tag   'http://placehold.jp/40x40.png',
                                     class: 'rounded-circle',
                                     width: 40,
@@ -52,24 +52,19 @@
                     <div>
                     <span class="font-weight-bold"><%= @post.user.username %></span>
                     <%= simple_format(@post.body) %>
-                    <p class="card-text">
+                    <p class="card-text text-end">
                         <small class="text-muted"><%= l @post.created_at, format: :long %></small>
                     </p>
+                </div>
+                <hr>
+
+                <div id='comments'>
+                    <%= render partial: 'posts/comments/comment', collection: @comments %>
                 </div>
             </div>
 
             <div class="card-footer">
-                <form class="row gy-2 gx-3 align-items-center">
-                <div class="col-9">
-                    <div class="form-outline">
-                        <input type="text" id="form11Example1" class="form-control" autocomplete="off">
-                        <label class="form-label" for="form11Example1">Label</label>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <button type="submit" class="btn btn-primary">Submit</button>
-                </div>
-                </form>
+                <%= render 'posts/comments/form', post: @post, comment: @comment %>
             </div>
 
         </div>
