@@ -14,7 +14,7 @@
                         <span class="font-weight-bold"><%= @post.user.username %></span>
                     </div>
                     <!-- Menu -->
-                    <% if current_user.id == @post.user.id %>
+                    <% if current_user && current_user.own?(@post) %>
                     <div class="dropdown text-center">
                         <a
                             class="text-reset me-3 dropdown-toggle hidden-arrow w-100 d-block"
