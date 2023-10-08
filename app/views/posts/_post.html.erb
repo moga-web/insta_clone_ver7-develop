@@ -2,9 +2,11 @@
     <%= render 'carousel_images', post: %>
     <div class="card-body">
             <%= post.body.truncate(50) %>
-        <div class="d-flex justify-content-end mb-1">
-            <i class="far fa-heart"></i>
-        </div>
+        <% if logged_in? %>
+            <div class="d-flex justify-content-end mb-1">
+                <%= render 'posts/likes/likes', post: post %>
+            </div>
+        <% end %>
         <div class="d-flex justify-content-end">
             <span class="text-muted small"><%= l post.created_at, format: :long %></span>
         </div>

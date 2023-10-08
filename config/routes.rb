@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'likes/create'
+  get 'likes/destroy'
   get 'comments/create'
   get 'comments/show'
   get 'comments/edit'
@@ -12,5 +14,6 @@ Rails.application.routes.draw do
 
   resources :posts do
     resources :comments, module: :posts
+    resource :like, only: [:create, :destroy], module: :posts
   end
 end
