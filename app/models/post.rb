@@ -20,6 +20,9 @@ class Post < ApplicationRecord
   belongs_to :user
   has_many_attached :images
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :like_users, through: :likes, source: :user
+
   validates :body, presence: true
   validates :images, presence: true,
                      blob: { content_type: ['image/png', 'image/jpg', 'image/jpeg'], size_range: 1..(5.megabytes) }
