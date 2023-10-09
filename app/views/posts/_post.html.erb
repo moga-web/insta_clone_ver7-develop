@@ -4,7 +4,7 @@
             <%= post.body.truncate(50) %>
         <% if logged_in? %>
             <div class="d-flex justify-content-end mb-1">
-                <%= render 'posts/likes/likes', post: post %>
+                <%= render 'posts/likes/likes', post: %>
             </div>
         <% end %>
         <div class="d-flex justify-content-end">
