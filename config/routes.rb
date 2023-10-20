@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/followings'
+  get 'relationships/followers'
   get 'likes/create'
   get 'likes/destroy'
   get 'comments/create'
@@ -12,8 +14,12 @@ Rails.application.routes.draw do
   post '/login', to: 'user_sessions#create'
   delete '/logout', to: 'user_sessions#destroy'
 
+  resources :users, only: %i[index] do
+    resource :relationships, only: %i[create destroy], module: :users
+  end
+
   resources :posts do
     resources :comments, module: :posts
-    resource :like, only: [:create, :destroy], module: :posts
+    resource :like, only: %i[create, destroy], module: :posts
   end
 end

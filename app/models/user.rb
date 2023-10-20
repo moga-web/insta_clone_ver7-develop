@@ -32,6 +32,8 @@ class User < ApplicationRecord
   validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
   validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
+  scope :recent, ->(count = 5) { order(created_at: :desc).limit(count) }
+
   def own?(object)
     id == object.user_id
   end
@@ -46,5 +48,17 @@ class User < ApplicationRecord
 
   def like?(post)
     like_posts.include?(post)
+  end
+
+  def follow(user_id)
+    relationships.create(followed_id: user_id)
+  end
+
+  def unfollow(user_id)
+    relationships.find_by(followed_id: user_id).destroy
+  end
+  
+  def following?(user)
+    followings.include?(user)
   end
 end

@@ -19,9 +19,9 @@
 #  fk_rails_...  (followed_id => users.id)
 #  fk_rails_...  (follower_id => users.id)
 #
-class Relationship < ApplicationRecord
+class Users::Relationship < ApplicationRecord
     belongs_to :follower, class_name: 'User'
     belongs_to :followed, class_name: 'User'
 
-    validates :follower_id, uniquness: { scope: :followed_id }
+    validates :follower_id, uniqueness: { scope: :followed_id }
 end
