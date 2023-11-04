@@ -51,14 +51,20 @@ class User < ApplicationRecord
   end
 
   def follow(user_id)
-    relationships.create(followed_id: user_id)
+    def follow(other_user)
+      following << other_user
+    end
+  
+    def unfollow(other_user)
+      following.destroy(other_user)
+    end
+  
+    def following?(other_user)
+      following.include?(other_user)
+    end
+  
+    def feed
+      Post.where(user_id: following_ids << id)
+    end
   end
 
-  def unfollow(user_id)
-    relationships.find_by(followed_id: user_id).destroy
-  end
-  
-  def following?(user)
-    followings.include?(user)
-  end
-end
