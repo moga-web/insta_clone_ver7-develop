@@ -58,7 +58,7 @@ RSpec.describe User, type: :model do
     let!(:user_a) { create(:user) }
     let!(:user_b) { create(:user) }
     it 'フォローするとRelationshipが増える' do
-      expect { user_a.follow(user_b) }.to change { Users::Relationship.count }.by(1)
+      expect { user_a.follow(user_b) }.to change { Relationship.count }.by(1)
     end
   end
 
@@ -69,7 +69,7 @@ RSpec.describe User, type: :model do
       user_a.follow(user_b)
     end
     it 'フォローを外すとRelationshipが減る' do
-      expect { user_a.unfollow(user_b) }.to change { Users::Relationship.count }.by(-1)
+      expect { user_a.unfollow(user_b) }.to change { Relationship.count }.by(-1)
     end
   end
 
