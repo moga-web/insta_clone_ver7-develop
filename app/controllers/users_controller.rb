@@ -3,6 +3,11 @@ class UsersController < ApplicationController
     @pagy, @users = pagy(User.order(created_at: :desc))
   end
 
+  def show
+    @user = User.find(params[:id])
+    @post = @user.posts.with_attached_images.order(created_at: :desc)
+  end
+
   def new
     @user = User.new
   end
@@ -15,11 +20,6 @@ class UsersController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @user = User.find(params[:id])
-    @post = @user.posts.with_attached_images.order(created_at: :desc)
   end
 
   private
