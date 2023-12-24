@@ -68,7 +68,7 @@ class User < ApplicationRecord
     Post.where(user_id: following_ids << id)
   end
 
-  def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(_auth_object = nil)
     %w[username]
   end
 end
