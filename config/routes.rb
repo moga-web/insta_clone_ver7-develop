@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :mypage do
+    get 'accounts/edit'
+    get 'accounts/update'
+  end
   root to: 'posts#index'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
