@@ -18,4 +18,9 @@ Rails.application.routes.draw do
     resources :comments, module: :posts
     resource :like, only: %i[create destroy], module: :posts
   end
+
+  namespace :mypage do
+    root to: 'accounts#edit'
+    resource :account, only: %i[edit update]
+  end
 end
