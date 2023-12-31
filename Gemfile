@@ -59,6 +59,9 @@ gem 'pagy'
 # 検索
 gem 'ransack'
 
+# デコレータ
+gem 'draper'
+
 group :development, :test do
   gem 'annotate'
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
