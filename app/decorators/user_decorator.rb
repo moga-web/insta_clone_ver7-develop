@@ -1,6 +1,6 @@
 class UserDecorator < ApplicationDecorator
   delegate_all
-  
+
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
   #
@@ -11,7 +11,7 @@ class UserDecorator < ApplicationDecorator
   #   end
 
   def avatar_url(size = :origin) # rubocop:disable Metrics/MethodLength
-    return 'http://placehold.jp/150x150.png'unless avatar.attached?
+    return 'http://placehold.jp/150x150.png' unless avatar.attached?
 
     command = case size
               when :thumb
