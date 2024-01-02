@@ -4,6 +4,10 @@
             <%= form_with model: @user, url: mypage_account_path do |f| %>
             <%= render 'shared/error_messages', object: @user %>
                 <div class="d-flex align-items-center gap-3">
+                    <%= image_tag @user.decorate.avatar_url(:lg),
+                        class: 'rounded-circle object-fit-cover',
+                        size: '100x100',
+                        alt: @user.username %>
                     <%= @user.username %>
                     <%= f.file_field :avatar, accept: 'image/*' %>
                 </div>
