@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :mypage do
+    get 'accounts/edit'
+    get 'accounts/update'
+  end
   root to: 'posts#index'
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
@@ -13,5 +17,10 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, module: :posts
     resource :like, only: %i[create destroy], module: :posts
+  end
+
+  namespace :mypage do
+    root to: 'accounts#edit'
+    resource :account, only: %i[edit update]
   end
 end
